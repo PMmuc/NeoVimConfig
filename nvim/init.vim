@@ -16,6 +16,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'arecarn/crunch.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
+Plug 'yegappan/mru'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
