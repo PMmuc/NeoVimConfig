@@ -17,6 +17,9 @@ Plug 'arecarn/crunch.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'yegappan/mru'
+Plug 'tpope/vim-surround'
+Plug 'rhysd/vim-clang-format'
+Plug 'vhdirk/vim-cmake'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -55,7 +58,18 @@ nmap <C-H> <C-W>h
 nmap <C-J> <C-W>j
 nmap <C-K> <C-W>k
 
+nmap <C-E> :MRU<CR>
+
 noremap <C-P> :NERDTreeTabsToggle<CR>
 let NERDTreeShowHidden = 1
 
+let g:cmake_c_compiler='clang'
+let g:cmake_cxx_compiler='clang++'
+let g:cmake_build_type='Debug'
+let g:cmake_project_generator='Ninja'
 
+autocmd filetype python nnoremap <F9> :w <bar> exec '!python3 '.shellescape('%')<CR>
+autocmd filetype cpp nnoremap <F5> :w <bar> exec '!clang-tidy -checks="*" '.shellescape('%')<CR>
+autocmd filetype cpp nnoremap <F6> :ClangFormat<CR> 
+autocmd filetype cpp nnoremap <F10> :w <bar> :CMake<CR>
+autocmd filetype cpp nnoremap <F9> :w <bar> exec '!ninja -C ./build -j4'<CR>
