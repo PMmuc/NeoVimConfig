@@ -21,6 +21,8 @@ Plug 'tpope/vim-surround'
 Plug 'rhysd/vim-clang-format'
 Plug 'vhdirk/vim-cmake'
 Plug 'maksimr/vim-jsbeautify'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -54,14 +56,19 @@ set spellcapcheck=""
 let g:airline_powerline_fonts=1
 let g:vim_indent_guides_start_level = 2
 
-nmap <C-L> <C-W>l
-nmap <C-H> <C-W>h
-nmap <C-J> <C-W>j
-nmap <C-K> <C-W>k
+" nmap <C-L> <C-W>l
+" nmap <C-H> <C-W>h
+" nmap <C-J> <C-W>j
+" nmap <C-K> <C-W>k
 
 nmap <C-E> :MRU<CR>
 
-noremap <C-P> :NERDTreeTabsToggle<CR>
+let g:fzf_command_prefix = 'Fzf'
+
+nnoremap <C-P> :FzfGFiles<CR>
+nnoremap <C-I> :FzfAg<CR>
+noremap <C-O> :NERDTreeTabsToggle<CR>
+
 let NERDTreeShowHidden = 1
 
 let g:cmake_c_compiler='clang'
@@ -83,3 +90,4 @@ autocmd filetype html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
 autocmd filetype css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
 
 map <c-f> :call JsBeautify()<cr>
+
